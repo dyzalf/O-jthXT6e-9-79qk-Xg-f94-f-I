@@ -6,7 +6,6 @@
 <title>BoosterStop — TCG Vending Machine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="/favicon.png">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -48,13 +47,15 @@
   }
 
   .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    letter-spacing: 1px;
-    color: var(--white);
+    display: flex;
+    align-items: center;
     text-decoration: none;
   }
-  .nav-logo span { color: var(--yellow); }
+  .nav-logo img {
+    height: 28px;
+    width: auto;
+    filter: invert(1) brightness(2);
+  }
 
   nav ul {
     list-style: none;
@@ -105,6 +106,10 @@
     display: inline-block;
     width: 32px; height: 1px;
     background: var(--yellow);
+  }
+
+  .hero-logo {
+    margin-bottom: 40px;
   }
 
   .hero h1 {
@@ -466,7 +471,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Booster<span>Stop</span></a>
+  <a href="#" class="nav-logo"><img src="logo.png" alt="BoosterStop"></a>
   <ul>
     <li><a href="#concept">Concept</a></li>
     <li><a href="#where">Emplacements</a></li>
@@ -477,8 +482,10 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-eyebrow">TCG Vending Machine — Suisse Romande</div>
-  <h1>Booster<span>Stop</span></h1>
- <p class="hero-body">
+  <div class="hero-logo">
+    <img src="logo.png" alt="BoosterStop" style="height: clamp(60px, 10vw, 130px); width: auto; filter: invert(1) brightness(2);">
+  </div>
+<p class="hero-body">
   Le premier réseau de distributeurs automatiques dédiés aux jeux de cartes à collectionner en Suisse.<br>
   Boosters, displays, boîtes collector — disponibles 24h/24, sans attendre la prochaine sortie en boutique.
 </p>
@@ -489,7 +496,7 @@
     <span class="tag">League of Legends TCG</span>
     <span class="tag">& more</span>
   </div>
-  <div class="hero-scroll"> </div>
+  <div class="hero-scroll">Scroll</div>
 </div>
 
 <!-- HOW IT WORKS -->
@@ -518,7 +525,7 @@
 <section id="games" class="fade-in" style="padding-top: 0;">
   <div class="section-label">Univers disponibles</div>
   <div class="games-row">
-    <div class="game-pill">Pokémon</div>
+    <div class="game-pill featured">Pokémon</div>
     <div class="game-pill">One Piece TCG</div>
     <div class="game-pill">Dragon Ball Super CG</div>
     <div class="game-pill">League of Legends TCG</div>
@@ -547,47 +554,41 @@
   <div class="contact-grid">
     <div class="contact-left">
       <h2>Travaillons<br><span>ensemble.</span></h2>
-      <p>Vous gérez un espace commercial, une salle de jeux, un centre culturel ou un lieu à fort passage ? Parlez-nous de votre emplacement — nous cherchons activement des partenaires pour nos distributeurs à Genève et en Suisse romande.</p>
+      <p>Vous gérez un espace commercial, une salle de jeux, un centre culturel ou un lieu à fort passage ? Parlez-nous de votre emplacement — nous cherchons activement des partenaires pour nos distributeurs en Suisse romande.</p>
       <div class="contact-info">contact@boosterstop.ch</div>
     </div>
-
-    <form class="contact-form" id="contactForm" method="post" action="https://formspree.io/f/mjgjwgzv">
+    <form class="contact-form" id="contactForm">
       <div class="form-row">
         <div class="form-group">
-          <label for="prenom">Prénom</label>
-          <input type="text" id="prenom" name="prenom" placeholder="Jean" required>
+          <label>Prénom</label>
+          <input type="text" placeholder="Jean" required>
         </div>
         <div class="form-group">
-          <label for="nom">Nom</label>
-          <input type="text" id="nom" name="nom" placeholder="Dupont" required>
+          <label>Nom</label>
+          <input type="text" placeholder="Dupont" required>
         </div>
       </div>
-
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="jean@exemple.ch" required>
+        <label>Email</label>
+        <input type="email" placeholder="jean@exemple.ch" required>
       </div>
-
       <div class="form-group">
-        <label for="profil">Vous êtes</label>
-        <select id="profil" name="profil" required>
+        <label>Vous êtes</label>
+        <select>
           <option value="" disabled selected>Sélectionnez...</option>
-          <option value="proprietaire_gestionnaire">Propriétaire / gestionnaire d'espace</option>
-          <option value="centre_commercial">Centre commercial</option>
-          <option value="joueur_tcg">Joueur / passionné TCG</option>
-          <option value="investisseur_partenaire">Investisseur / partenaire</option>
-          <option value="presse_media">Presse / média</option>
-          <option value="autre">Autre</option>
+          <option>Propriétaire / gestionnaire d'espace</option>
+          <option>Centre commercial</option>
+          <option>Joueur / passionné TCG</option>
+          <option>Investisseur / partenaire</option>
+          <option>Presse / média</option>
+          <option>Autre</option>
         </select>
       </div>
-
       <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Décrivez votre projet, emplacement ou question..." required></textarea>
+        <label>Message</label>
+        <textarea placeholder="Décrivez votre projet, emplacement ou question..."></textarea>
       </div>
-
       <button type="submit" class="btn-submit">Envoyer →</button>
-
       <div class="form-success" id="formSuccess">
         Message envoyé — nous revenons vers vous sous 48h.
       </div>
@@ -595,48 +596,10 @@
   </div>
 </div>
 
-<script>
-  const form = document.getElementById("contactForm");
-  const successMessage = document.getElementById("formSuccess");
-  const submitButton = form.querySelector(".btn-submit");
-
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    successMessage.style.display = "none";
-    submitButton.disabled = true;
-    submitButton.textContent = "Envoi en cours...";
-
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: {
-          Accept: "application/json"
-        }
-      });
-
-      if (response.ok) {
-        form.reset();
-        successMessage.style.display = "block";
-      } else {
-        alert("Une erreur est survenue. Merci de réessayer.");
-      }
-    } catch (error) {
-      alert("Impossible d'envoyer le formulaire pour le moment.");
-    } finally {
-      submitButton.disabled = false;
-      submitButton.textContent = "Envoyer →";
-    }
-  });
-</script>
-
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Booster<span>Stop</span></div>
-  <p>©2020-2025 BoosterStop — Genève, Suisse</p>
+  <div class="footer-logo"><img src="logo.png" alt="BoosterStop" style="height: 22px; width: auto; filter: invert(1) brightness(2); opacity: 0.6;"></div>
+  <p>© 2020-2026 BoosterStop — 247 Distribution SNC</p>
 </footer>
 
 <!-- GOOGLE MAPS -->
@@ -666,10 +629,9 @@ function initMap() {
     ]
   });
 }
-
-!</script>
+</script>
 <!-- Remplacez YOUR_API_KEY par votre clé Google Maps API -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>!
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 
 <!-- SCROLL ANIMATIONS -->
 <script>
