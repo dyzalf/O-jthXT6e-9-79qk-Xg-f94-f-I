@@ -423,16 +423,29 @@
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
-    nav { padding: 18px 24px; }
+    nav { padding: 16px 20px; }
     nav ul { display: none; }
-    .hero { padding: 90px 24px 80px; }
-    section { padding: 72px 24px; }
-    .how-grid { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-    .contact-section { padding: 0 24px 80px; }
-    .map-section-inner { padding: 0 24px; }
-    footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+    .hero { padding: 100px 20px 72px; }
+    .hero-logo { margin-bottom: 28px; }
+    .hero-logo img { max-width: 75vw !important; height: auto !important; }
+    .hero-body { font-size: 15px; }
+    .hero-scroll { left: 20px; }
+    section { padding: 64px 20px; }
+    .how-grid { grid-template-columns: 1fr; gap: 2px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-section { padding: 0 20px 72px; }
+    .map-section-inner { padding: 0 20px; }
+    .map-wrapper { height: 320px; }
+    footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
     .form-row { grid-template-columns: 1fr; }
+    .contact-left h2 { font-size: 40px; }
+  }
+
+  @media (max-width: 400px) {
+    .hero-logo img { max-width: 85vw !important; }
+    .hero-eyebrow { font-size: 10px; letter-spacing: 2px; }
+    .hero-tags { gap: 8px; }
+    .tag { font-size: 10px; padding: 5px 12px; }
   }
 
   .form-success {
@@ -463,7 +476,7 @@
 <div class="hero">
   <div class="hero-eyebrow">TCG Vending Machine — Suisse Romande</div>
   <div class="hero-logo">
-    <img src="logo.png" alt="BoosterStop" style="height: clamp(60px, 10vw, 130px); width: auto;">
+    <img src="logo.png" alt="BoosterStop" style="height: clamp(40px, 8vw, 130px); width: auto; max-width: 80vw;">
   </div>
   <p class="hero-body">
     Le premier réseau de distributeurs automatiques dédiés aux jeux de cartes à collectionner en Suisse.<br>
