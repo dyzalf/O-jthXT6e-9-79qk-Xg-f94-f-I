@@ -165,6 +165,7 @@
     filter: drop-shadow(0 30px 80px rgba(0,0,0,0.9));
     animation: floatMachine 6s ease-in-out infinite;
   }
+  .hero-machine-img.mobile-img { display: none; }
   @keyframes floatMachine {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-12px); }
@@ -453,7 +454,9 @@
     nav { padding: 18px 24px; }
     nav ul { display: none; }
     .hero { grid-template-columns: 1fr; padding: 100px 24px 80px; gap: 0; }
-    .hero-right { display: none; }
+    .hero-right { display: flex; margin-top: 32px; }
+    .hero-machine-img.desktop-img { display: none; }
+    .hero-machine-img.mobile-img { display: block; max-width: 80vw; margin: 0 auto; }
     section { padding: 72px 24px; }
     .how-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -510,7 +513,8 @@
   <!-- RIGHT — machine -->
   <div class="hero-right">
     <div class="hero-machine-glow"></div>
-    <img class="hero-machine-img" src="front transparent.png" alt="BoosterStop Machine">
+    <img class="hero-machine-img desktop-img" src="front transparent.png" alt="BoosterStop Machine">
+    <img class="hero-machine-img mobile-img" src="front transparent.png" alt="BoosterStop Machine">
   </div>
   <div class="hero-scroll">Scroll</div>
 </div>
