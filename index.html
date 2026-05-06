@@ -75,14 +75,14 @@
   /* HERO */
   .hero {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 72px 48px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 100px 48px 80px;
     position: relative;
     overflow: hidden;
+    gap: 40px;
   }
-
   .hero::before {
     content: '';
     position: absolute;
@@ -91,7 +91,7 @@
     background: radial-gradient(circle, rgba(255,208,0,0.07) 0%, transparent 70%);
     pointer-events: none;
   }
-
+  .hero-left { display: flex; flex-direction: column; justify-content: center; }
   .hero-eyebrow {
     font-size: 11px;
     letter-spacing: 4px;
@@ -108,23 +108,19 @@
     width: 32px; height: 1px;
     background: var(--yellow);
   }
-
   .hero-logo { margin-bottom: 40px; }
-
   .hero-body {
-    max-width: 520px;
     color: #aaa;
     font-size: 16px;
     line-height: 1.75;
     margin-bottom: 32px;
   }
-
   /* HERO TAGS */
   .hero-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 48px;
+    margin-bottom: 0;
   }
   .tag {
     font-size: 11px;
@@ -143,7 +139,37 @@
     background: rgba(255, 208, 0, 0.06);
     transform: translateY(-2px);
   }
-
+  /* HERO RIGHT — machine */
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .hero-machine-glow {
+    position: absolute;
+    width: 70%; height: 50%;
+    background: radial-gradient(circle, rgba(255,40,80,0.15) 0%, rgba(100,0,200,0.08) 50%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(50px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-machine-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 30px 80px rgba(0,0,0,0.9));
+    animation: floatMachine 6s ease-in-out infinite;
+  }
+  @keyframes floatMachine {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
   .hero-scroll {
     position: absolute;
     bottom: 40px; left: 48px;
@@ -154,6 +180,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    grid-column: 1 / -1;
   }
   .hero-scroll::after {
     content: '';
@@ -426,7 +453,8 @@
   @media (max-width: 768px) {
     nav { padding: 18px 24px; }
     nav ul { display: none; }
-    .hero { padding: 90px 24px 80px; }
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 80px; gap: 0; }
+    .hero-right { display: none; }
     section { padding: 72px 24px; }
     .how-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -462,146 +490,31 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow">TCG Vending Machine — Suisse Romande</div>
-  <div class="hero-logo">
-    <img src="logo.png" alt="BoosterStop" style="height: clamp(60px, 10vw, 130px); width: auto; filter: invert(1) brightness(2);">
+  <!-- LEFT -->
+  <div class="hero-left">
+    <div class="hero-eyebrow">TCG Vending Machine — Suisse Romande</div>
+    <div class="hero-logo">
+      <img src="logo.png" alt="BoosterStop" style="height: clamp(60px, 10vw, 130px); width: auto; filter: invert(1) brightness(2);">
+    </div>
+    <p class="hero-body">
+      Le premier réseau de distributeurs automatiques dédiés aux jeux de cartes à collectionner en Suisse.<br>
+      Boosters, displays, boîtes collector — disponibles 24h/24, sans attendre la prochaine sortie en boutique.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Pokémon</span>
+      <span class="tag">One Piece</span>
+      <span class="tag">Dragon Ball SCG</span>
+      <span class="tag">League of Legends TCG</span>
+      <span class="tag">& more</span>
+    </div>
   </div>
-  <p class="hero-body">
-    Le premier réseau de distributeurs automatiques dédiés aux jeux de cartes à collectionner en Suisse.<br>
-    Boosters, displays, boîtes collector — disponibles 24h/24, sans attendre la prochaine sortie en boutique.
-  </p>
-  <div class="hero-tags">
-    <span class="tag">Pokémon</span>
-    <span class="tag">One Piece</span>
-    <span class="tag">Dragon Ball SCG</span>
-    <span class="tag">League of Legends TCG</span>
-    <span class="tag">& more</span>
+  <!-- RIGHT — machine -->
+  <div class="hero-right">
+    <div class="hero-machine-glow"></div>
+    <img class="hero-machine-img" src="front.png" alt="BoosterStop Machine">
   </div>
   <div class="hero-scroll">Scroll</div>
 </div>
-
-<!-- MACHINE SECTION -->
-<div class="machine-section fade-in">
-  <div class="machine-inner">
-    <div class="machine-text">
-      <div class="section-label">La Machine</div>
-      <h2 class="machine-title">Conçue pour<br><span>le TCG.</span></h2>
-      <p class="machine-desc">Un distributeur automatique entièrement dédié aux jeux de cartes à collectionner. Branding immersif, éclairage LED, jusqu'à 600 boosters et 9 displays par machine.</p>
-      <div class="machine-angles">
-        <button class="angle-btn active" data-img="front.png">Face</button>
-        <button class="angle-btn" data-img="side2.png">3/4 gauche</button>
-        <button class="angle-btn" data-img="side.png">3/4 droit</button>
-      </div>
-    </div>
-    <div class="machine-visual">
-      <div class="machine-glow"></div>
-      <img id="machineImg" src="front.png" alt="BoosterStop Machine">
-    </div>
-  </div>
-</div>
-
-<style>
-  .machine-section {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 48px 80px;
-  }
-  .machine-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .machine-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 5vw, 64px);
-    line-height: 1;
-    color: var(--white);
-    margin-bottom: 20px;
-  }
-  .machine-title span { color: var(--yellow); }
-  .machine-desc {
-    color: var(--text-muted);
-    font-size: 14px;
-    line-height: 1.8;
-    margin-bottom: 36px;
-    max-width: 380px;
-  }
-  .machine-angles {
-    display: flex;
-    gap: 8px;
-  }
-  .angle-btn {
-    background: var(--gray);
-    border: 1px solid var(--gray-mid);
-    color: var(--text-muted);
-    padding: 8px 18px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
-  .angle-btn:hover, .angle-btn.active {
-    border-color: var(--yellow);
-    color: var(--yellow);
-    background: rgba(255, 208, 0, 0.06);
-  }
-  .machine-visual {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .machine-glow {
-    position: absolute;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(circle, rgba(255, 40, 80, 0.18) 0%, rgba(100, 0, 200, 0.1) 50%, transparent 70%);
-    border-radius: 50%;
-    filter: blur(40px);
-    z-index: 0;
-    pointer-events: none;
-  }
-  #machineImg {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 420px;
-    height: auto;
-    object-fit: contain;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    filter: drop-shadow(0 20px 60px rgba(0,0,0,0.8));
-  }
-  #machineImg.switching {
-    opacity: 0;
-    transform: scale(0.97);
-  }
-
-  @media (max-width: 768px) {
-    .machine-section { padding: 0 20px 64px; }
-    .machine-inner { grid-template-columns: 1fr; gap: 40px; }
-    .machine-visual { order: -1; }
-    #machineImg { max-width: 85vw; margin: 0 auto; display: block; }
-  }
-</style>
-
-<script>
-  document.querySelectorAll('.angle-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.angle-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      const img = document.getElementById('machineImg');
-      img.classList.add('switching');
-      setTimeout(() => {
-        img.src = this.dataset.img;
-        img.classList.remove('switching');
-      }, 300);
-    });
-  });
-</script>
 
 <!-- HOW IT WORKS -->
 <section id="concept" class="fade-in">
