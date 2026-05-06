@@ -55,6 +55,7 @@
   .nav-logo img {
     height: 28px;
     width: auto;
+    filter: invert(1) brightness(2);
   }
 
   nav ul {
@@ -77,7 +78,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 30px 48px 80px;
+    padding: 72px 48px 80px;
     position: relative;
     overflow: hidden;
   }
@@ -314,7 +315,7 @@
     0%, 100% { box-shadow: 0 0 0 0 rgba(255,208,0,0.5); }
     50% { box-shadow: 0 0 0 10px rgba(255,208,0,0); }
   }
-  .map-static { width: 100%; height: 100%; background: #0f0f0f; }
+  #map { width: 100%; height: 100%; filter: grayscale(100%) invert(1) brightness(0.25) contrast(1.1); }
 
   /* CONTACT */
   .contact-section {
@@ -423,29 +424,16 @@
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
-    nav { padding: 16px 20px; }
+    nav { padding: 18px 24px; }
     nav ul { display: none; }
-    .hero { padding: 100px 20px 72px; }
-    .hero-logo { margin-bottom: 28px; }
-    .hero-logo img { max-width: 75vw !important; height: auto !important; }
-    .hero-body { font-size: 15px; }
-    .hero-scroll { left: 20px; }
-    section { padding: 64px 20px; }
-    .how-grid { grid-template-columns: 1fr; gap: 2px; }
-    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    .contact-section { padding: 0 20px 72px; }
-    .map-section-inner { padding: 0 20px; }
-    .map-wrapper { height: 320px; }
-    footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+    .hero { padding: 90px 24px 80px; }
+    section { padding: 72px 24px; }
+    .how-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .contact-section { padding: 0 24px 80px; }
+    .map-section-inner { padding: 0 24px; }
+    footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
     .form-row { grid-template-columns: 1fr; }
-    .contact-left h2 { font-size: 40px; }
-  }
-
-  @media (max-width: 400px) {
-    .hero-logo img { max-width: 85vw !important; }
-    .hero-eyebrow { font-size: 10px; letter-spacing: 2px; }
-    .hero-tags { gap: 8px; }
-    .tag { font-size: 10px; padding: 5px 12px; }
   }
 
   .form-success {
@@ -476,7 +464,7 @@
 <div class="hero">
   <div class="hero-eyebrow">TCG Vending Machine — Suisse Romande</div>
   <div class="hero-logo">
-    <img src="logo.png" alt="BoosterStop" style="height: clamp(40px, 8vw, 130px); width: auto; max-width: 80vw;">
+    <img src="logo.png" alt="BoosterStop" style="height: clamp(60px, 10vw, 130px); width: auto; filter: invert(1) brightness(2);">
   </div>
   <p class="hero-body">
     Le premier réseau de distributeurs automatiques dédiés aux jeux de cartes à collectionner en Suisse.<br>
@@ -491,6 +479,129 @@
   </div>
   <div class="hero-scroll">Scroll</div>
 </div>
+
+<!-- MACHINE SECTION -->
+<div class="machine-section fade-in">
+  <div class="machine-inner">
+    <div class="machine-text">
+      <div class="section-label">La Machine</div>
+      <h2 class="machine-title">Conçue pour<br><span>le TCG.</span></h2>
+      <p class="machine-desc">Un distributeur automatique entièrement dédié aux jeux de cartes à collectionner. Branding immersif, éclairage LED, jusqu'à 600 boosters et 9 displays par machine.</p>
+      <div class="machine-angles">
+        <button class="angle-btn active" data-img="front.png">Face</button>
+        <button class="angle-btn" data-img="side2.png">3/4 gauche</button>
+        <button class="angle-btn" data-img="side.png">3/4 droit</button>
+      </div>
+    </div>
+    <div class="machine-visual">
+      <div class="machine-glow"></div>
+      <img id="machineImg" src="front.png" alt="BoosterStop Machine">
+    </div>
+  </div>
+</div>
+
+<style>
+  .machine-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+  }
+  .machine-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .machine-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+  .machine-title span { color: var(--yellow); }
+  .machine-desc {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 36px;
+    max-width: 380px;
+  }
+  .machine-angles {
+    display: flex;
+    gap: 8px;
+  }
+  .angle-btn {
+    background: var(--gray);
+    border: 1px solid var(--gray-mid);
+    color: var(--text-muted);
+    padding: 8px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .angle-btn:hover, .angle-btn.active {
+    border-color: var(--yellow);
+    color: var(--yellow);
+    background: rgba(255, 208, 0, 0.06);
+  }
+  .machine-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .machine-glow {
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(255, 40, 80, 0.18) 0%, rgba(100, 0, 200, 0.1) 50%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 0;
+    pointer-events: none;
+  }
+  #machineImg {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    filter: drop-shadow(0 20px 60px rgba(0,0,0,0.8));
+  }
+  #machineImg.switching {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  @media (max-width: 768px) {
+    .machine-section { padding: 0 20px 64px; }
+    .machine-inner { grid-template-columns: 1fr; gap: 40px; }
+    .machine-visual { order: -1; }
+    #machineImg { max-width: 85vw; margin: 0 auto; display: block; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.angle-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.angle-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const img = document.getElementById('machineImg');
+      img.classList.add('switching');
+      setTimeout(() => {
+        img.src = this.dataset.img;
+        img.classList.remove('switching');
+      }, 300);
+    });
+  });
+</script>
 
 <!-- HOW IT WORKS -->
 <section id="concept" class="fade-in">
@@ -531,49 +642,7 @@
   <div class="map-section-inner">
     <div class="section-label">Emplacements</div>
     <div class="map-wrapper">
-      <div class="map-static">
-        <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
-          <rect width="800" height="480" fill="#0f0f0f"/>
-          <!-- Switzerland shape (simplified) -->
-          <path d="
-            M 195,185
-            L 210,170 L 235,165 L 255,155 L 275,148 L 295,140 L 320,138
-            L 345,132 L 370,128 L 395,125 L 420,124 L 445,126 L 468,130
-            L 490,138 L 510,148 L 528,158 L 545,165 L 558,172 L 568,182
-            L 575,195 L 580,210 L 578,228 L 572,245 L 562,260 L 548,272
-            L 532,282 L 515,290 L 498,296 L 480,300 L 462,308 L 445,318
-            L 428,328 L 412,340 L 395,348 L 375,352 L 355,350 L 335,344
-            L 315,335 L 296,322 L 278,308 L 260,295 L 242,280 L 225,265
-            L 210,250 L 198,235 L 190,220 L 190,205 Z
-          " fill="#1c1c1c" stroke="#2e2e2e" stroke-width="1.5"/>
-
-          <!-- Internal canton lines (very subtle) -->
-          <path d="M 320,138 L 315,200 L 280,240" stroke="#252525" stroke-width="0.8" fill="none"/>
-          <path d="M 395,125 L 390,190 L 375,250 L 355,310" stroke="#252525" stroke-width="0.8" fill="none"/>
-          <path d="M 468,130 L 462,195 L 445,260" stroke="#252525" stroke-width="0.8" fill="none"/>
-          <path d="M 280,240 L 335,245 L 390,250 L 445,248 L 498,242" stroke="#252525" stroke-width="0.8" fill="none"/>
-          <path d="M 210,215 L 280,220 L 335,215" stroke="#252525" stroke-width="0.8" fill="none"/>
-          <path d="M 510,200 L 555,210" stroke="#252525" stroke-width="0.8" fill="none"/>
-
-          <!-- Lakes (slightly lighter) -->
-          <ellipse cx="255" cy="230" rx="18" ry="10" fill="#161616" opacity="0.8"/>
-          <ellipse cx="370" cy="278" rx="14" ry="7" fill="#161616" opacity="0.8"/>
-          <ellipse cx="460" cy="220" rx="20" ry="9" fill="#161616" opacity="0.8"/>
-
-          <!-- Subtle grid overlay -->
-          <line x1="0" y1="120" x2="800" y2="120" stroke="#1a1a1a" stroke-width="0.5"/>
-          <line x1="0" y1="240" x2="800" y2="240" stroke="#1a1a1a" stroke-width="0.5"/>
-          <line x1="0" y1="360" x2="800" y2="360" stroke="#1a1a1a" stroke-width="0.5"/>
-          <line x1="200" y1="0" x2="200" y2="480" stroke="#1a1a1a" stroke-width="0.5"/>
-          <line x1="400" y1="0" x2="400" y2="480" stroke="#1a1a1a" stroke-width="0.5"/>
-          <line x1="600" y1="0" x2="600" y2="480" stroke="#1a1a1a" stroke-width="0.5"/>
-
-          <!-- Geneva dot -->
-          <circle cx="218" cy="282" r="5" fill="#FFD000" opacity="0.9"/>
-          <circle cx="218" cy="282" r="10" fill="#FFD000" opacity="0.15"/>
-          <circle cx="218" cy="282" r="16" fill="#FFD000" opacity="0.06"/>
-        </svg>
-      </div>
+      <div id="map"></div>
       <div class="map-overlay">
         <div class="map-overlay-label">Coming Soon</div>
         <div class="map-overlay-sub">Genève — Suisse Romande</div>
@@ -633,11 +702,39 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><img src="logo.png" alt="BoosterStop" style="height: 22px; width: auto; opacity: 0.6;"></div>
+  <div class="footer-logo"><img src="logo.png" alt="BoosterStop" style="height: 22px; width: auto; filter: invert(1) brightness(2); opacity: 0.6;"></div>
   <p>© 2020-2026 BoosterStop — 247 Distribution SNC</p>
 </footer>
 
-
+<!-- GOOGLE MAPS -->
+<script>
+function initMap() {
+  const switzerland = { lat: 46.8182, lng: 8.2275 };
+  const map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 7,
+    center: switzerland,
+    disableDefaultUI: true,
+    gestureHandling: 'none',
+    styles: [
+      { elementType: 'geometry', stylers: [{ color: '#1a1a1a' }] },
+      { elementType: 'labels.text.fill', stylers: [{ color: '#444' }] },
+      { elementType: 'labels.text.stroke', stylers: [{ color: '#1a1a1a' }] },
+      { featureType: 'administrative', elementType: 'geometry.stroke', stylers: [{ color: '#333' }] },
+      { featureType: 'administrative.land_parcel', elementType: 'labels.text.fill', stylers: [{ color: '#555' }] },
+      { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#222' }] },
+      { featureType: 'road.arterial', elementType: 'labels.text.fill', stylers: [{ color: '#444' }] },
+      { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#282828' }] },
+      { featureType: 'road.highway', elementType: 'labels.text.fill', stylers: [{ color: '#555' }] },
+      { featureType: 'transit', elementType: 'geometry', stylers: [{ color: '#1e1e1e' }] },
+      { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#0d0d0d' }] },
+      { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#333' }] },
+      { featureType: 'poi', stylers: [{ visibility: 'off' }] },
+      { featureType: 'landscape', elementType: 'geometry', stylers: [{ color: '#141414' }] }
+    ]
+  });
+}
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 
 <!-- MOUSE LIGHT -->
 <div id="mouse-light"></div>
@@ -699,6 +796,7 @@
 
     const x = tx, y = ty;
 
+    // Noyau — petit halo chaud intense au centre
     const g2 = ctx.createRadialGradient(x, y, 0, x, y, 60);
     g2.addColorStop(0,   'rgba(255, 230, 80, 0.18)');
     g2.addColorStop(0.5, 'rgba(255, 208, 0, 0.07)');
